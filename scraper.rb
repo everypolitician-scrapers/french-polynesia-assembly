@@ -34,7 +34,7 @@ def scrape_person(url, gender)
 
   data = { 
     id: url[/rep=(.*)/, 1],
-    name: box.css('div[style*="font-size:22px"]').text.tidy,
+    name: box.css('div[style*="font-size:22px"]').text.sub(/\s+\([^)]+\)/,'').tidy,
     area: box.xpath('.//text()[contains(.,"Section :")]/../span').text,
     party: box.xpath('.//text()[contains(.,"Political group :")]/../following-sibling::div[1]').text.strip,
     email: box.xpath('.//text()[contains(.,"Contact :")]/../following-sibling::div/a').text,
