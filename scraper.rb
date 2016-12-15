@@ -47,14 +47,6 @@ def scrape_person(url, gender)
   ScraperWiki.save_sqlite([:id, :term], data)
 end
 
-term = { 
-  id: '2013',
-  name: '2013–',
-  start_date: '2013-05-17',
-  source: 'https://fr.wikipedia.org/wiki/Assemblée_de_la_Polynésie_française',
-}
-ScraperWiki.save_sqlite([:id], term, 'terms')
-
 gender_map = { 
   'm' => 'male',
   'f' => 'female'
