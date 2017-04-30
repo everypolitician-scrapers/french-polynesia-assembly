@@ -45,6 +45,7 @@ gender_map = {
   'f' => 'female',
 }
 
+ScraperWiki.sqliteexecute('DROP TABLE data') rescue nil
 %w[m f].each do |sexe|
   url = "http://www.assemblee.pf/_contenu/_pages_jumi/__recherche-rep-en.php?req=SELECT%20representant.actif,%20representant.id_representant,%20representant.nom%20AS%20nom_rep,%20representant.fichier_photo,%20representant.prenom%20AS%20prenom_rep,%20groupe_politique.nom%20AS%20nom_groupe,%20section.titre%20AS%20titre_section,%20groupe_politique.code_couleur%20FROM%20%20representant,%20groupe_politique,%20section%20WHERE%20actif=1%20AND%20representant.nom!=%27VACANT%27%20AND%20groupe_politique_id=id_groupe_politique%20AND%20section_id=id_section%20AND%20sexe=%27#{sexe}%27%20ORDER%20BY%20nom_rep"
   scrape_url(url, gender_map[sexe])
