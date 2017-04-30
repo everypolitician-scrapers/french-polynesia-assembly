@@ -2,23 +2,16 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
+require 'scraped'
 require 'scraperwiki'
-require 'nokogiri'
-require 'open-uri'
-
 require 'pry'
+
 require 'open-uri/cached'
 OpenURI::Cache.cache_path = '.cache'
-
-class String
-  def tidy
-    gsub(/[[:space:]]+/, ' ').strip
-  end
-end
+# require 'scraped_page_archive/open-uri'
 
 def noko_for(url)
   Nokogiri::HTML(open(url).read)
-  #  Nokogiri::HTML(open(url).read, nil, 'utf-8')
 end
 
 def scrape_url(url, gender)
